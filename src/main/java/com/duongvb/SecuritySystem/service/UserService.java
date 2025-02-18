@@ -3,6 +3,8 @@ package com.duongvb.SecuritySystem.service;
 import com.duongvb.SecuritySystem.dto.request.UserCreationRequest;
 import com.duongvb.SecuritySystem.dto.request.UserUpdateRequest;
 import com.duongvb.SecuritySystem.entity.User;
+import com.duongvb.SecuritySystem.exception.AppException;
+import com.duongvb.SecuritySystem.exception.ErrorCode;
 import com.duongvb.SecuritySystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,8 @@ public class UserService {
 
     public User createUser(UserCreationRequest request) {
         User user = new User();
-        if(userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("User existed.");
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
         }
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());

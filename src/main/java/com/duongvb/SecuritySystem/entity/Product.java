@@ -18,7 +18,15 @@ public class Product {
     private BigDecimal productPrice;
 
     @Column(name = "productDesc", length = 255, nullable = false)
-    private String  productDesc;
+    private String productDesc;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getProductName() {
         return productName;

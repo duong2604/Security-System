@@ -4,14 +4,14 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class UserCreationRequest {
-    @NotEmpty(message = "username is required.")
+    @NotEmpty(message = "INVALID_USERNAME")
     private String username;
 
-    @NotEmpty(message = "email is required.")
+    @NotEmpty(message = "INVALID_EMAIL")
     private String email;
 
-    @NotEmpty(message = "Password is required.")
-    @Size(min = 8, max = 20, message = "Password must be at least 8 characters.")
+    @NotEmpty(message = "INVALID_PASSWORD")
+    @Size(min = 8, max = 20, message = "INVALID_PASSWORD")
     private String password;
 
     public String getUsername() {
