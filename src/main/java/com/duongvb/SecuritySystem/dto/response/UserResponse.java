@@ -1,4 +1,4 @@
-package com.duongvb.SecuritySystem.dto.request;
+package com.duongvb.SecuritySystem.dto.response;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -11,15 +11,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserCreationRequest {
-    @NotEmpty(message = "INVALID_USERNAME")
+public class UserResponse {
     String username;
-
-    @NotEmpty(message = "INVALID_EMAIL")
     String email;
-
-    @NotEmpty(message = "INVALID_PASSWORD")
-    @Size(min = 8, max = 20, message = "INVALID_PASSWORD")
     String password;
-
 }

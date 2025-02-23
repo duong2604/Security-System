@@ -3,23 +3,29 @@ package com.duongvb.SecuritySystem.controller;
 import com.duongvb.SecuritySystem.dto.request.UserCreationRequest;
 import com.duongvb.SecuritySystem.dto.request.UserUpdateRequest;
 import com.duongvb.SecuritySystem.dto.response.ApiResponse;
+import com.duongvb.SecuritySystem.dto.response.UserResponse;
 import com.duongvb.SecuritySystem.entity.User;
+import com.duongvb.SecuritySystem.mapper.UserMapper;
 import com.duongvb.SecuritySystem.service.UserService;
 import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @RequestMapping("/users")
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserController {
-    @Autowired
-    private UserService userService;
+    UserService userService;
 
     @PostMapping
-    ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
-        ApiResponse<User> apiResponse = new ApiResponse<>();
+    ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
+        ApiResponse<UserResponse> apiResponse = new ApiResponse<>();
         apiResponse.setResult(userService.createUser(request));
         return apiResponse;
     }
