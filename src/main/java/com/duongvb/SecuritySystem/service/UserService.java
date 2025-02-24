@@ -10,17 +10,20 @@ import com.duongvb.SecuritySystem.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor(onConstructor_ = {@Autowired})
+@Slf4j
+@RequiredArgsConstructor
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserService {
     UserRepository userRepository;
     UserMapper userMapper;
+    PasswordEncoder passwordEncoder;
 
     public UserResponse createUser(UserCreationRequest request) {
 
@@ -28,6 +31,7 @@ public class UserService {
             throw new RuntimeException(ErrorCode.UNCATEGORIZED_EXCEPTION.getMessage());
         }
         User user = userMapper.toUser(request);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         return userMapper.toUserResponse(userRepository.save(user));
     }
 
