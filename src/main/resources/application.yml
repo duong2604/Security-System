@@ -26,3 +26,6 @@ spring:
     init:
       mode: always
       continue-on-error: true
+
+  jwt:
+    signerKey: "AYmCLY4WHExPP!FUlAfvaOqorjwQ=i1Ji1tLjji/5dQJvEuDYCAi6x9CY6bS7U9r"

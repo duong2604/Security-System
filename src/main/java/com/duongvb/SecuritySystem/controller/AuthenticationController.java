@@ -24,12 +24,12 @@ public class AuthenticationController {
     AuthenticationService authenticationService;
     private final RestClient.Builder builder;
 
-    @PostMapping("/log-in")
+    @PostMapping("/token")
     ApiResponse<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
-        boolean result = authenticationService.authenticate(authenticationRequest);
-        log.info("Authentication : " + authenticationRequest);
+        var result = authenticationService.authenticate(authenticationRequest);
         return ApiResponse.<AuthenticationResponse>builder().result(
-                AuthenticationResponse.builder().authenticated(result).build()
+                result
         ).build();
     }
+
 }

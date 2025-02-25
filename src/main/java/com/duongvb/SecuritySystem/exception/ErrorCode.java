@@ -8,7 +8,7 @@ public enum ErrorCode {
     INVALID_EMAIL(1004, "Email is required."),
     INVALID_KEY(1005, "Key is invalid."),
     USER_NOT_FOUND(1006, "User not found."),
-    ;
+    UNAUTHENTICATED(1007, "Unauthenticated");
 
 
     private int code;
