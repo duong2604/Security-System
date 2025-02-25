@@ -7,6 +7,7 @@ public enum ErrorCode {
     INVALID_PASSWORD(1003, "Password is required."),
     INVALID_EMAIL(1004, "Email is required."),
     INVALID_KEY(1005, "Key is invalid."),
+    USER_NOT_FOUND(1006, "User not found."),
     ;
 
 
