@@ -1,52 +1,27 @@
 package com.duongvb.SecuritySystem.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Entity()
 @Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
 public class User {
     @Id()
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    String id;
 
     @Column(name = "username", length = 50, nullable = false)
-    private String username;
+    String username;
 
     @Column(name = "email", length = 50, nullable = false, unique = true)
-    private String email;
+    String email;
 
     @Column(name = "password", length = 255, nullable = false)
-    private String password;
+    String password;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

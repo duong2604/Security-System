@@ -1,9 +1,12 @@
 package com.duongvb.SecuritySystem.controller;
 
 import com.duongvb.SecuritySystem.dto.request.AuthenticationRequest;
+import com.duongvb.SecuritySystem.dto.request.IntrospectRequest;
 import com.duongvb.SecuritySystem.dto.response.ApiResponse;
 import com.duongvb.SecuritySystem.dto.response.AuthenticationResponse;
+import com.duongvb.SecuritySystem.dto.response.IntrospectResponse;
 import com.duongvb.SecuritySystem.service.AuthenticationService;
+import com.nimbusds.jose.JOSEException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
+
+import java.text.ParseException;
 
 @Slf4j
 @RestController
@@ -30,6 +35,14 @@ public class AuthenticationController {
         return ApiResponse.<AuthenticationResponse>builder().result(
                 result
         ).build();
+    }
+
+    @PostMapping("/introspect")
+    ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest request) throws ParseException, JOSEException {
+        var result = authenticationService.introspect(request);
+        return ApiResponse.<IntrospectResponse>builder()
+                .result(result)
+                .build();
     }
 
 }
